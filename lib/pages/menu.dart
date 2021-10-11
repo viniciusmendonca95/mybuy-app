@@ -115,7 +115,7 @@ class _MenuPageState extends State<MenuPage> {
       body: _body(),
       backgroundColor: Color(0xFF3da8a2),
       appBar: AppBar(
-        backgroundColor: Color(0xFF3da8a2),
+        backgroundColor: Colors.white,
         title: Image.asset('assets/images/logo-mybuy.png', scale: 3),
         centerTitle: true,
         automaticallyImplyLeading: false,

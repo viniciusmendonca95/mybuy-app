@@ -208,8 +208,11 @@ class _CriarContaState extends State<CriarConta> {
                       child: Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: TextButton(
-                              child: Text("Voltar a página de login",
-                                  textAlign: TextAlign.center),
+                              child: Text(
+                                "Voltar a página de login",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Color(0xFFDc6818)),
+                              ),
                               onPressed: () {
                                 Navigator.pop(context, false);
                               })),

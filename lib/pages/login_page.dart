@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: TextButton(
                               child: Text(
                                 "Recuperar Senha",
-                                style: TextStyle(color: Color(0xFF3da8a2)),
+                                style: TextStyle(color: Color(0xFFDc6818)),
                               ),
                               onPressed: () => Navigator.pushNamed(
                                   context, '/recuperarSenha'),
@@ -159,8 +159,11 @@ class _LoginPageState extends State<LoginPage> {
                         child: Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: TextButton(
-                                child: Text("Não possui uma conta? Cadastre-se",
-                                    textAlign: TextAlign.center),
+                                child: Text(
+                                  "Não possui uma conta? Cadastre-se",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Color(0xFFDc6818)),
+                                ),
                                 onPressed: () => Navigator.pushNamed(
                                     context, '/criarConta')))),
                   ],

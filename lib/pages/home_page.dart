@@ -18,12 +18,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         actions: [
           IconButton(
-              icon: Icon(Icons.filter_alt, size: 35),
+              icon: Icon(
+                Icons.filter_alt,
+                size: 35,
+                color: Color(0xFF3da8a2),
+              ),
               onPressed: () {
                 // Send info to child
               })
         ],
-        backgroundColor: Color(0xFF3da8a2),
+        backgroundColor: Colors.white,
         title: Image.asset('assets/images/logo-mybuy.png', scale: 3),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -65,25 +69,42 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           Product p = products[index];
           return Card(
-            margin: EdgeInsets.only(top: 15, left: 10, right: 10),
+            margin: EdgeInsets.only(top: 15, left: 10, right: 10, bottom: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(p.name, style: TextStyle(fontSize: 20)),
+                  child: Text(p.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      )),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Quantidade: ${p.quantity}",
-                      style: TextStyle(fontSize: 20)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("R\$ ${(p.price / 100).toString()}",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            "R\$ ${(p.price / 100).toStringAsPrecision(4)}",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFDc6818))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 8, left: 8, right: 10, bottom: 8),
+                        child: Text.rich(
+                            TextSpan(text: "Estoque: ", children: <TextSpan>[
+                              TextSpan(
+                                  text: '${p.quantity}',
+                                  style: TextStyle(fontWeight: FontWeight.bold))
+                            ]),
+                            style: TextStyle(fontSize: 15)),
+                      ),
+                    ]),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[

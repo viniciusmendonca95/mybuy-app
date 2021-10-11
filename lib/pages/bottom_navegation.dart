@@ -15,7 +15,7 @@ class _BottonNavigationState extends State<BottonNavigation> {
 
   final _tabs = [
     HomePage(),
-    CategoryPage(),
+    //CategoryPage(),
     CartOpendPage(),
     MenuPage(),
   ];
@@ -36,10 +36,10 @@ class _BottonNavigationState extends State<BottonNavigation> {
               icon: Icon(Icons.shopping_bag),
               label: 'Produtos',
               backgroundColor: Colors.white),
-          BottomNavigationBarItem(
+/*           BottomNavigationBarItem(
               icon: Icon(Icons.category_rounded),
               label: 'Categorias',
-              backgroundColor: Colors.white),
+              backgroundColor: Colors.white), */
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
               label: 'Carrinho',
