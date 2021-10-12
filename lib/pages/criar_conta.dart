@@ -27,13 +27,12 @@ class _CriarContaState extends State<CriarConta> {
         name, email, password, checkPassword, phone);
 
     if (resultCreateUser == "") {
+      Navigator.pushNamed(context, "/");
       alert(
         context,
         "Cadastro",
         "Usuário cadastrado com sucesso!",
       );
-      await Future.delayed(Duration(seconds: 4));
-      Navigator.pushNamed(context, "/");
     } else {
       alert(context, "Cadastro", resultCreateUser);
     }

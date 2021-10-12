@@ -1,3 +1,4 @@
+import 'package:app/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,30 +43,59 @@ _validarPermissao(permission, userPermission) {
 
 _listViewButtons(context, userPermission) {
   return ListView(
+    padding: const EdgeInsets.only(left: 40, right: 40),
     children: [
+      SizedBox(
+        height: 20,
+      ),
       _validarPermissao("Common", userPermission)
-          ? FlatButton(
-              color: Colors.red,
-              child: Text("Histórico de compras",
-                  style: TextStyle(color: Colors.white)),
-              onPressed: () =>
-                  Navigator.pushNamed(context, '/historicoCompras'))
+          ? RaisedButton.icon(
+              onPressed: () {
+                alert(context, "Função em construção",
+                    "O histórico de compras será implementado na 2ª Unidade.");
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              label: Text(
+                'Histórico de Compras',
+                style: TextStyle(color: Colors.white),
+              ),
+              icon: Icon(
+                Icons.format_list_bulleted,
+                color: Colors.white,
+              ),
+              textColor: Colors.white,
+              splashColor: Colors.red,
+              color: Color(0xFFDc6818),
+            )
+          /*   Navigator.pushNamed(context, '/historicoCompras') */
           : null,
       SizedBox(
         height: 20,
       ),
       _validarPermissao("Administration", userPermission)
-          ? FlatButton(
-              color: Colors.blue,
-              child: Text("Cadastrar produto",
-                  style: TextStyle(color: Colors.white)),
+          ? RaisedButton.icon(
               onPressed: () =>
-                  Navigator.pushNamed(context, '/cadastrarProduto'))
+                  Navigator.pushNamed(context, '/cadastrarProduto'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              label: Text(
+                'Cadastrar Produto',
+                style: TextStyle(color: Colors.white),
+              ),
+              icon: Icon(
+                Icons.add_box_rounded,
+                color: Colors.white,
+              ),
+              textColor: Colors.white,
+              splashColor: Colors.red,
+              color: Colors.green,
+            )
           : null,
       SizedBox(
         height: 20,
       ),
-      _validarPermissao("Administration", userPermission)
+/*       _validarPermissao("Administration", userPermission)
           ? FlatButton(
               color: Colors.red,
               child: Text("Atualizar produto",
@@ -74,18 +104,29 @@ _listViewButtons(context, userPermission) {
           : null,
       SizedBox(
         height: 20,
-      ),
+      ), */
       _validarPermissao("Administration", userPermission)
-          ? FlatButton(
-              color: Colors.green,
-              child: Text("Cadastrar categoria",
-                  style: TextStyle(color: Colors.white)),
-              onPressed: () => Navigator.pushNamed(context, '/createCategory'))
+          ? RaisedButton.icon(
+              onPressed: () => Navigator.pushNamed(context, '/createCategory'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              label: Text(
+                'Cadastrar Categoria',
+                style: TextStyle(color: Colors.white),
+              ),
+              icon: Icon(
+                Icons.add_box_rounded,
+                color: Colors.white,
+              ),
+              textColor: Colors.white,
+              splashColor: Colors.red,
+              color: Colors.blue,
+            )
           : null,
       SizedBox(
-        height: 20,
+        height: 270,
       ),
-      _validarPermissao("Administration", userPermission)
+/*       _validarPermissao("Administration", userPermission)
           ? FlatButton(
               color: Colors.brown,
               child: Text("Atualizar categoria",
@@ -94,15 +135,27 @@ _listViewButtons(context, userPermission) {
           : null,
       SizedBox(
         height: 20,
-      ),
-      _validarPermissao("Common", userPermission)
-          ? FlatButton(
-              color: Colors.red,
-              child: Text("Logout", style: TextStyle(color: Colors.white)),
-              onPressed: () => _logout(context))
-          : null,
+      ), */
       SizedBox(
-        height: 20,
+        height: 40,
+        child: _validarPermissao("Common", userPermission)
+            ? RaisedButton.icon(
+                onPressed: () => _logout(context),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                label: Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.white),
+                ),
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                textColor: Colors.white,
+                splashColor: Colors.red,
+                color: Colors.red,
+              )
+            : null,
       )
     ].whereType<Widget>().toList(),
   );
