@@ -10,9 +10,8 @@ class ShoppingCartService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var token = prefs.getString('token');
-    var userId = prefs.getString('userId');
 
-    var url = BaseService.baseUrl + '/ShoppingCart/' + userId;
+    var url = BaseService.baseUrl + '/ShoppingCart/';
 
     var header = {
       'Content-Type': "application/json",

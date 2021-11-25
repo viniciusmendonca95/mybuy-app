@@ -1,13 +1,32 @@
+import 'package:app/services/ResetPasswordService.dart';
 import 'package:flutter/material.dart';
+import 'package:app/widgets/alert.dart';
 
-class RecuperarSenha extends StatelessWidget {
+class RecuperarSenha extends StatefulWidget {
   const RecuperarSenha({Key key}) : super(key: key);
+
+  @override
+  _RecuperarSenhaState createState() => _RecuperarSenhaState();
+}
+
+class _RecuperarSenhaState extends State<RecuperarSenha> {
+  final email = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  void resetPassword(BuildContext context) async {
+    String email = this.email.text;
+
+    var resultResetPassword = await ResetPasswordService.resetPassword(email);
+    Navigator.pushNamed(context, "/");
+    alert(context, "Alteração de Senha", resultResetPassword);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
       child: SingleChildScrollView(
+        key: _formKey,
         child: Column(
           children: <Widget>[
             Container(
@@ -59,6 +78,7 @@ class RecuperarSenha extends StatelessWidget {
                             BoxShadow(color: Colors.black12, blurRadius: 5)
                           ]),
                       child: TextField(
+                        controller: email,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             icon: Icon(Icons.email, color: Colors.grey),
@@ -88,7 +108,7 @@ class RecuperarSenha extends StatelessWidget {
                                 )
                               ],
                             ),
-                            onPressed: () => {},
+                            onPressed: () => resetPassword(context),
                           ),
                         )),
                     Container(

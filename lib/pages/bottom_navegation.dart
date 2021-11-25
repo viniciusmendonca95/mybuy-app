@@ -1,4 +1,3 @@
-import 'package:app/pages/category_page.dart';
 import 'package:app/pages/home_page.dart';
 import 'package:app/pages/menu.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ class _BottonNavigationState extends State<BottonNavigation> {
 
   final _tabs = [
     HomePage(),
-    //CategoryPage(),
     CartOpendPage(),
     MenuPage(),
   ];
@@ -36,10 +34,6 @@ class _BottonNavigationState extends State<BottonNavigation> {
               icon: Icon(Icons.shopping_bag),
               label: 'Produtos',
               backgroundColor: Colors.white),
-/*           BottomNavigationBarItem(
-              icon: Icon(Icons.category_rounded),
-              label: 'Categorias',
-              backgroundColor: Colors.white), */
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
               label: 'Carrinho',

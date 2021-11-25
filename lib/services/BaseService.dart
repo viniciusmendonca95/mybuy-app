@@ -1,3 +1,3 @@
 class BaseService {
-  static String baseUrl = 'https://e15e-177-158-134-195.ngrok.io/api/v1';
+  static String baseUrl = 'https://a897-177-207-27-175.ngrok.io/api/v1';
 }

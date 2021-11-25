@@ -11,9 +11,8 @@ class ShoppingCartOpendService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var token = prefs.getString('token');
-    var userId = prefs.getString('userId');
 
-    var url = BaseService.baseUrl + '/ShoppingCartOpend/' + userId;
+    var url = BaseService.baseUrl + '/ShoppingCartOpend/';
 
     var header = {
       'Content-Type': "application/json",
@@ -79,7 +78,7 @@ class ShoppingCartOpendService {
     var token = prefs.getString('token');
     var userId = prefs.getString('userId');
 
-    var url = "${BaseService.baseUrl}/ShoppingCartOpend/close/$userId";
+    var url = "${BaseService.baseUrl}/ShoppingCartOpend/close/";
     var header = {
       'Content-Type': "application/json",
       "Authorization": 'Bearer $token'

@@ -1,4 +1,3 @@
-import 'package:app/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,10 +49,8 @@ _listViewButtons(context, userPermission) {
       ),
       _validarPermissao("Common", userPermission)
           ? RaisedButton.icon(
-              onPressed: () {
-                alert(context, "Função em construção",
-                    "O histórico de compras será implementado na 2ª Unidade.");
-              },
+              onPressed: () =>
+                  Navigator.pushNamed(context, '/historicoCompras'),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
               label: Text(
@@ -68,7 +65,6 @@ _listViewButtons(context, userPermission) {
               splashColor: Colors.red,
               color: Color(0xFFDc6818),
             )
-          /*   Navigator.pushNamed(context, '/historicoCompras') */
           : null,
       SizedBox(
         height: 20,
@@ -95,16 +91,27 @@ _listViewButtons(context, userPermission) {
       SizedBox(
         height: 20,
       ),
-/*       _validarPermissao("Administration", userPermission)
-          ? FlatButton(
-              color: Colors.red,
-              child: Text("Atualizar produto",
-                  style: TextStyle(color: Colors.white)),
-              onPressed: () => Navigator.pushNamed(context, '/criarConta'))
+      _validarPermissao("Administration", userPermission)
+          ? RaisedButton.icon(
+              onPressed: () => Navigator.pushNamed(context, '/alterarProduto'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              label: Text(
+                'Alterar Produto',
+                style: TextStyle(color: Colors.white),
+              ),
+              icon: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+              textColor: Colors.white,
+              splashColor: Colors.red,
+              color: Colors.green,
+            )
           : null,
       SizedBox(
         height: 20,
-      ), */
+      ),
       _validarPermissao("Administration", userPermission)
           ? RaisedButton.icon(
               onPressed: () => Navigator.pushNamed(context, '/createCategory'),
@@ -124,18 +131,51 @@ _listViewButtons(context, userPermission) {
             )
           : null,
       SizedBox(
-        height: 270,
+        height: 20,
       ),
-/*       _validarPermissao("Administration", userPermission)
-          ? FlatButton(
-              color: Colors.brown,
-              child: Text("Atualizar categoria",
-                  style: TextStyle(color: Colors.white)),
-              onPressed: () => Navigator.pushNamed(context, '/criarConta'))
+      _validarPermissao("Administration", userPermission)
+          ? RaisedButton.icon(
+              onPressed: () =>
+                  Navigator.pushNamed(context, '/alterarCategoria'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              label: Text(
+                'Alterar Categoria',
+                style: TextStyle(color: Colors.white),
+              ),
+              icon: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+              textColor: Colors.white,
+              splashColor: Colors.red,
+              color: Colors.blue,
+            )
           : null,
       SizedBox(
         height: 20,
-      ), */
+      ),
+      _validarPermissao("Administration", userPermission)
+          ? RaisedButton.icon(
+              onPressed: () => Navigator.pushNamed(context, '/listarCategoria'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              label: Text(
+                'Listar Categorias',
+                style: TextStyle(color: Colors.white),
+              ),
+              icon: Icon(
+                Icons.list,
+                color: Colors.white,
+              ),
+              textColor: Colors.white,
+              splashColor: Colors.red,
+              color: Colors.blue,
+            )
+          : null,
+      SizedBox(
+        height: 80,
+      ),
       SizedBox(
         height: 40,
         child: _validarPermissao("Common", userPermission)

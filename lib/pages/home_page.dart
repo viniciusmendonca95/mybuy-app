@@ -16,17 +16,6 @@ class _HomePageState extends State<HomePage> {
       body: _body(),
       backgroundColor: Color(0xFF3da8a2),
       appBar: AppBar(
-        actions: [
-          IconButton(
-              icon: Icon(
-                Icons.filter_alt,
-                size: 35,
-                color: Color(0xFF3da8a2),
-              ),
-              onPressed: () {
-                // Send info to child
-              })
-        ],
         backgroundColor: Colors.white,
         title: Image.asset('assets/images/logo-mybuy.png', scale: 3),
         centerTitle: true,

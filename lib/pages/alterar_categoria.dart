@@ -2,24 +2,28 @@ import 'package:app/services/CategoryService.dart';
 import 'package:app/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
-class CreateCategoryPage extends StatefulWidget {
-  const CreateCategoryPage({Key key}) : super(key: key);
+class AlterarCategoria extends StatefulWidget {
+  const AlterarCategoria({Key key}) : super(key: key);
 
   @override
-  _CreateCategoryPageState createState() => _CreateCategoryPageState();
+  _AlterarCategoriaState createState() => _AlterarCategoriaState();
 }
 
-class _CreateCategoryPageState extends State<CreateCategoryPage> {
+class _AlterarCategoriaState extends State<AlterarCategoria> {
+  final categoryId = TextEditingController();
   final name = TextEditingController();
   final description = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  void cadastrarCategoria(BuildContext context) async {
+
+  void alterarCategoria(BuildContext context) async {
+    String categoryId = this.categoryId.text;
     String name = this.name.text;
     String description = this.description.text;
-    var resultCreateCategory =
-        await CategoryService.createCategory(name, description);
+
+    var resultUpdateCategory =
+        await CategoryService.updateCategory(categoryId, name, description);
     Navigator.pushNamed(context, "/bottomNavigation");
-    alert(context, "Cadastro de Produto", resultCreateCategory);
+    alert(context, "Alteração de Produto", resultUpdateCategory);
   }
 
   @override
@@ -50,13 +54,38 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                     padding: EdgeInsets.only(top: 15),
                     child: Column(
                       children: <Widget>[
-                        Text("Cadastro de Categoria",
+                        Text("Alteração de Categoria",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(height: 30),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          height: 45,
+                          padding: EdgeInsets.only(
+                              top: 4, left: 16, right: 16, bottom: 4),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(color: Colors.black12, blurRadius: 5)
+                              ]),
+                          child: TextFormField(
+                            controller: categoryId,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                icon: Icon(Icons.info_outline,
+                                    color: Colors.grey),
+                                hintText: 'Código da categoria'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Container(
                           width: MediaQuery.of(context).size.width / 1.2,
                           height: 45,
@@ -123,7 +152,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Text(
-                                      "Cadastrar Categoria",
+                                      "Alterar Categoria",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
@@ -131,7 +160,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                     )
                                   ],
                                 ),
-                                onPressed: () => cadastrarCategoria(context),
+                                onPressed: () => alterarCategoria(context),
                               ),
                             )),
                       ],

@@ -1,25 +1,43 @@
-import 'package:app/services/CategoryService.dart';
+import 'package:app/services/ProductService.dart';
 import 'package:app/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
-class CreateCategoryPage extends StatefulWidget {
-  const CreateCategoryPage({Key key}) : super(key: key);
+class AlterarProduto extends StatefulWidget {
+  const AlterarProduto({Key key}) : super(key: key);
 
   @override
-  _CreateCategoryPageState createState() => _CreateCategoryPageState();
+  _AlterarProdutoState createState() => _AlterarProdutoState();
 }
 
-class _CreateCategoryPageState extends State<CreateCategoryPage> {
+class _AlterarProdutoState extends State<AlterarProduto> {
+  final productId = TextEditingController();
   final name = TextEditingController();
   final description = TextEditingController();
+  final price = TextEditingController();
+  final quantity = TextEditingController();
+  final warrantyTime = TextEditingController();
+  final weight = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  void cadastrarCategoria(BuildContext context) async {
+
+  void alterarProduto(BuildContext context) async {
+    String productId = this.productId.text;
     String name = this.name.text;
     String description = this.description.text;
-    var resultCreateCategory =
-        await CategoryService.createCategory(name, description);
+    String price = this.price.text;
+    String quantity = this.quantity.text;
+    String warrantyTime = "1";
+    String weight = "1";
+    var resultChangeProduct = await ProductService.updateProduct(
+        productId,
+        name,
+        description,
+        "",
+        int.parse(price),
+        int.parse(quantity),
+        int.parse(warrantyTime),
+        int.parse(weight));
     Navigator.pushNamed(context, "/bottomNavigation");
-    alert(context, "Cadastro de Produto", resultCreateCategory);
+    alert(context, "Alteração de Produto", resultChangeProduct);
   }
 
   @override
@@ -50,13 +68,39 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                     padding: EdgeInsets.only(top: 15),
                     child: Column(
                       children: <Widget>[
-                        Text("Cadastro de Categoria",
+                        Text("Alteração de Produto",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(height: 30),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          height: 45,
+                          margin: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(
+                              top: 4, left: 16, right: 16, bottom: 4),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(color: Colors.black12, blurRadius: 5)
+                              ]),
+                          child: TextFormField(
+                            controller: productId,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                icon: Icon(Icons.info_outline,
+                                    color: Colors.grey),
+                                hintText: 'Código do produto'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Container(
                           width: MediaQuery.of(context).size.width / 1.2,
                           height: 45,
@@ -105,6 +149,58 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                           ),
                         ),
                         SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          height: 45,
+                          margin: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(
+                              top: 4, left: 16, right: 16, bottom: 4),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(color: Colors.black12, blurRadius: 5)
+                              ]),
+                          child: TextFormField(
+                            controller: price,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                icon: Icon(Icons.price_change,
+                                    color: Colors.grey),
+                                hintText: 'Preço'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          height: 45,
+                          margin: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(
+                              top: 4, left: 16, right: 16, bottom: 4),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(color: Colors.black12, blurRadius: 5)
+                              ]),
+                          child: TextFormField(
+                            controller: quantity,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                icon: Icon(Icons.bar_chart_outlined,
+                                    color: Colors.grey),
+                                hintText: 'Estoque'),
+                          ),
+                        ),
+                        SizedBox(
                           height: 80,
                         ),
                         Container(
@@ -123,7 +219,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Text(
-                                      "Cadastrar Categoria",
+                                      "Alterar Produto",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
@@ -131,7 +227,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                     )
                                   ],
                                 ),
-                                onPressed: () => cadastrarCategoria(context),
+                                onPressed: () => alterarProduto(context),
                               ),
                             )),
                       ],
